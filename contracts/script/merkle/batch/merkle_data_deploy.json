@@ -1,0 +1,91 @@
+{
+  "merkleRoot": "0x25daa48bca5790b366cbf2fc525223961e425bc236b4d1372797a25f811f6d93",
+  "txCount": 3,
+  "batchId": 40,
+  "batchSalt": 1,
+  "transactions": [
+    {
+      "index": 0,
+      "type": "DELAYED",
+      "txHash": "0x88e80272276e3500f4154a9dfc1763981c2ae6be570747a65bc00ba6ef6b37cc",
+      "txDataStruct": [
+        "0x68b86Ce0e9E72367e20a0e144bECE5e2Bb61f403",
+        "0x3D4e40ecD81BADC2aEE1e62E694a6c969F29586e",
+        "10000000",
+        1,
+        1766393245,
+        1,
+        40,
+        0,
+        1
+      ],
+      "evmAddresses": {
+        "from": "0x68b86Ce0e9E72367e20a0e144bECE5e2Bb61f403",
+        "to": "0x3D4e40ecD81BADC2aEE1e62E694a6c969F29586e"
+      },
+      "tronAddresses": {
+        "from": "TKWvD71EMFTpFVGZyqqX9fC6MQgcR9H76M",
+        "to": "TFZMxv9HUzvsL3M7obrvikSQkuvJsopgMU"
+      },
+      "proof": [
+        "0x7399cc043427bd28ce666fe8890e8757c5aec90ec1da28e5a4ad389f3dbc1cd0",
+        "0x61c3acfb278fef59a1435801cec08385d51a38be09b91872e89084aa55f22f59"
+      ]
+    },
+    {
+      "index": 1,
+      "type": "INSTANT",
+      "txHash": "0x7399cc043427bd28ce666fe8890e8757c5aec90ec1da28e5a4ad389f3dbc1cd0",
+      "txDataStruct": [
+        "0x68b86Ce0e9E72367e20a0e144bECE5e2Bb61f403",
+        "0x3D4e40ecD81BADC2aEE1e62E694a6c969F29586e",
+        "20000000",
+        2,
+        1766393246,
+        1,
+        40,
+        1,
+        1
+      ],
+      "evmAddresses": {
+        "from": "0x68b86Ce0e9E72367e20a0e144bECE5e2Bb61f403",
+        "to": "0x3D4e40ecD81BADC2aEE1e62E694a6c969F29586e"
+      },
+      "tronAddresses": {
+        "from": "TKWvD71EMFTpFVGZyqqX9fC6MQgcR9H76M",
+        "to": "TFZMxv9HUzvsL3M7obrvikSQkuvJsopgMU"
+      },
+      "proof": [
+        "0x88e80272276e3500f4154a9dfc1763981c2ae6be570747a65bc00ba6ef6b37cc",
+        "0x61c3acfb278fef59a1435801cec08385d51a38be09b91872e89084aa55f22f59"
+      ]
+    },
+    {
+      "index": 2,
+      "type": "BATCHED",
+      "txHash": "0x61c3acfb278fef59a1435801cec08385d51a38be09b91872e89084aa55f22f59",
+      "txDataStruct": [
+        "0x68b86Ce0e9E72367e20a0e144bECE5e2Bb61f403",
+        "0x3D4e40ecD81BADC2aEE1e62E694a6c969F29586e",
+        "30000000",
+        3,
+        1766393247,
+        3,
+        40,
+        2,
+        1
+      ],
+      "evmAddresses": {
+        "from": "0x68b86Ce0e9E72367e20a0e144bECE5e2Bb61f403",
+        "to": "0x3D4e40ecD81BADC2aEE1e62E694a6c969F29586e"
+      },
+      "tronAddresses": {
+        "from": "TKWvD71EMFTpFVGZyqqX9fC6MQgcR9H76M",
+        "to": "TFZMxv9HUzvsL3M7obrvikSQkuvJsopgMU"
+      },
+      "proof": [
+        "0x8a573f8b2597359ebf470b8f913c96712f4c911d6f50e7e797477facb424a820"
+      ]
+    }
+  ]
+}

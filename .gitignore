@@ -1,0 +1,92 @@
+########################################
+# OS / Editor
+########################################
+.DS_Store
+Thumbs.db
+
+########################################
+# Environment / Secrets
+########################################
+.env
+.env.*
+*.env
+
+########################################
+# Logs
+########################################
+*.log
+hs_err_pid*
+replay_pid*
+
+########################################
+# Node / JS
+########################################
+node_modules/
+package-lock.json
+
+########################################
+# Java / Gradle
+########################################
+*.class
+*.jar
+*.war
+*.ear
+
+.gradle/
+build/
+**/build/
+
+# Keep Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar
+
+########################################
+# Repo-local build artifacts
+########################################
+bin/
+
+########################################
+# IDEs
+########################################
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse / STS
+.project
+.classpath
+.settings/
+.springBeans
+.sts4-cache
+.apt_generated
+.factorypath
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+
+########################################
+# Solidity / Foundry
+########################################
+# Compiler outputs
+cache/
+out/
+
+# Foundry broadcast logs
+!/broadcast
+/broadcast/*/31337/
+/broadcast/**/dry-run/
+
+########################################
+# Docs / local notes
+########################################
+docs/
+HELP.md

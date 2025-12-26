@@ -1,0 +1,69 @@
+spring:
+  application:
+    name: tsol-backend
+
+# -----------------------------------------------------------------------------
+# Configuration priority (highest to lowest):
+# 1) System environment variables
+# 2) .env file (loaded by spring-dotenv)
+# 3) Defaults below
+# -----------------------------------------------------------------------------
+
+server:
+  port: ${PORT:8080}
+
+settlement:
+  # TRON node gRPC endpoint
+  node-endpoint: ${NODE_ENDPOINT:grpc.nile.trongrid.io:50051}
+  # Settlement contract address (base58)
+  contract-address: ${SETTLEMENT_ADDRESS}
+  # Aggregator private key (64 hex chars, no 0x) - MUST be set in .env or environment
+  private-key: ${UPDATER_PRIVATE_KEY}
+  # Optional: aggregator base58 address (if you want to pin it; otherwise derived from key where applicable)
+  aggregator-address: ${UPDATER_ADDRESS}
+  polling:
+    tx-info-timeout-seconds: ${SETTLEMENT_TX_INFO_TIMEOUT_SECONDS:60}
+    tx-info-poll-initial-ms: ${SETTLEMENT_TX_INFO_POLL_INITIAL_MS:250}
+    tx-info-poll-max-ms: ${SETTLEMENT_TX_INFO_POLL_MAX_MS:2000}
+    batch-submitted-timeout-seconds: ${SETTLEMENT_BATCH_SUBMITTED_TIMEOUT_SECONDS:60}
+    batch-submitted-poll-initial-ms: ${SETTLEMENT_BATCH_SUBMITTED_POLL_INITIAL_MS:500}
+    batch-submitted-poll-max-ms: ${SETTLEMENT_BATCH_SUBMITTED_POLL_MAX_MS:3000}
+
+whitelist:
+  # Whitelist registry contract address (base58)
+  registry-address: ${WHITELIST_REGISTRY_ADDRESS}
+  # Current whitelist merkle root (0x-prefixed hex)
+  merkle-root: ${WL_NEW_ROOT}
+  # Whitelist update nonce
+  nonce: ${WL_NONCE:0}
+  # List of whitelisted addresses (comma-separated)
+  addresses: ${WHITELIST_ADDRESSES}
+
+fee:
+  # FeeModule contract address (base58)
+  module-address: ${FEE_MODULE_ADDRESS}
+
+token:
+  # ERC20/TRC20 token contract address (base58)
+  address: ${TOKEN_ADDRESS:TXYZopYRdj2D9XRtbG411XZZ3kM5VkAeBf}
+
+batch:
+  # Batch processing defaults
+  max-tx-per-batch: ${MAX_TX_PER_BATCH:5}
+  timelock-duration: ${TIMELOCK_DURATION:0}
+  merkle-root: ${BATCH_MERKLE_ROOT:}
+
+chain:
+  # Nile=3448148188, Mainnet=728126428
+  id: ${CHAIN_ID:3448148188}
+
+scheduler:
+  batching:
+    enabled: ${SCHEDULER_BATCHING_ENABLED:true}
+    check-interval-ms: ${SCHEDULER_BATCHING_CHECK_INTERVAL_MS:3000}
+    max-intents: ${SCHEDULER_BATCHING_MAX_INTENTS:5}
+    max-delay-seconds: ${SCHEDULER_BATCHING_MAX_DELAY_SECONDS:30}
+  execution:
+    enabled: ${SCHEDULER_EXECUTION_ENABLED:true}
+    check-interval-ms: ${SCHEDULER_EXECUTION_CHECK_INTERVAL_MS:5000}
+    max-parallel: ${SCHEDULER_EXECUTION_MAX_PARALLEL:3}

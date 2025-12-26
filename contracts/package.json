@@ -1,0 +1,35 @@
+{
+  "name": "tron-sc",
+  "version": "1.0.0",
+  "description": "──────── STATE VARIABLES ────────     ├── bytes32 merkleRoot     ├── uint256 lastUpdate     ──────── FUNCTIONS ────────     ├── function verifyWhitelist(user, proof)     ├── function updateMerkleRoot(newRoot, sig)     ├── function requestWhitelist(proof)     ──────── EVENTS ────────     ├── emits WhitelistUpdated, WhitelistRequested",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "solhint 'src/**/*.sol'",
+    "lint:fix": "solhint 'src/**/*.sol' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoostyLabs/tron-sc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BoostyLabs/tron-sc/issues"
+  },
+  "homepage": "https://github.com/BoostyLabs/tron-sc#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ethereumjs-util": "^7.1.5",
+    "tronweb": "^6.1.0"
+  },
+  "devDependencies": {
+    "solhint": "^6.0.1"
+  }
+}
