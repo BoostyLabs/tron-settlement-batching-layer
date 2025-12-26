@@ -1,6 +1,6 @@
-# TRON Settlement Batching Layer (TSOL)
+# TRON Settlement Batching Layer (TSBL)
 
-This repository is a **monorepo** implementing the **TRON Settlement Batching Layer (TSOL)** — a hybrid off-chain/on-chain system for collecting transfer intents, batching them into Merkle trees, and executing transfers on TRON using Merkle proofs with optional whitelist-based batching.
+This repository is a **monorepo** implementing the **TRON Settlement Batching Layer (TSBL)** — a hybrid off-chain/on-chain system for collecting transfer intents, batching them into Merkle trees, and executing transfers on TRON using Merkle proofs with optional whitelist-based batching.
 
 The system consists of two main parts:
 
