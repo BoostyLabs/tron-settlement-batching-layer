@@ -1,4 +1,4 @@
-### tsol-backend
+### TSBL-backend
 
 Spring Boot backend for submitting **transfer intents**, batching them into a **Merkle tree**, submitting the batch to an on-chain **Settlement** contract on TRON, and executing transfers using Merkle proofs (optionally with whitelist proofs for batched tx types).
 
