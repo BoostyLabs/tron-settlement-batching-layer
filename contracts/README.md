@@ -1,5 +1,9 @@
 ## TSBL-contracts
 
+This folder contains the **on-chain core of the TRON Settlement Batching Layer (TSBL)** — a set of smart contracts that implement **batch-based token transfer execution** using Merkle trees, delayed finality (time-lock), and modular fee logic.
+The contracts are designed so that **all critical validation happens on-chain**.  
+The backend acts only as an **aggregator/operator**, not as a trusted execution component.
+
 ### **WhitelistRegistry.sol**
 
     ──────── STATE VARIABLES ────────
@@ -11,6 +15,20 @@
     ├── function requestWhitelist(proof)
     ──────── EVENTS ────────
     ├── emits WhitelistUpdated, WhitelistRequested
+
+### Purpose
+
+`WhitelistRegistry` manages **permissioned access for batched transactions** (`TxType.BATCHED`) using **Merkle tree–based whitelists**.
+
+Whitelist verification is **only required for batched transactions**.  
+Non-batched transaction types do not depend on this contract.
+
+### Core idea
+
+- The whitelist is represented by a **single Merkle root stored on-chain**
+- Users prove inclusion via a **Merkle proof**, without storing addresses on-chain
+- Updates to the whitelist are **authorized via ECDSA signatures** and protected by a nonce
+- Users may submit whitelist requests by paying a small fee (anti-spam + signaling)
 
 ### **FeeModule.sol**
 
@@ -38,6 +56,26 @@
     ├── function applyFee(sender, fee, TxType, transferHash, batchId)
     ──────── EVENTS ────────
     ├── emits FeeCalculated, FeeApplied, FreeTierUsed
+
+### Purpose
+
+`FeeModule` is responsible for **on-chain fee calculation and accounting**, but **does not collect or transfer real funds**.
+
+> ⚠️ **Important**  
+> This module is **purely logical and statistical**:
+> - It calculates *what the fee should be*
+> - It records fee usage for analytics and UX
+> - It does **not** deduct TRX or tokens
+
+### Core idea
+
+- Fee calculation depends on:
+    - transaction type (`TxType`)
+    - recipient count (`recipientCount`)
+    - transfer volume
+    - user free-tier quota
+- **Backend never calculates fees** — it only calls `calculateFee`
+- Fee logic is deterministic and fully verifiable on-chain
 
 ### **Settlement.sol**
 
@@ -80,12 +118,38 @@
     ├── function setTimeLockDuration(_duration) onlyOwner
     ──────── EVENTS ────────
     ├── emits BatchSubmitted, TransferExecuted
-    
 
-**flow:**
+### Purpose
 
-```
-On-chain:  submitBatch(merkleRoot) → time lock 1 min
-           ↓
-           executeTransfer(proof, data) → Merkle verify → transfer tokens
-```
+`Settlement` is the **execution layer of the protocol**.
+
+It is responsible for:
+- accepting batches (Merkle roots)
+- enforcing delayed finality (time-lock)
+- executing **exactly one transfer per Merkle leaf**
+
+### Core idea
+
+> **Batch ≠ multi-send transaction**
+
+A batch is a **commitment (Merkle root)** to many transfers.  
+Each transfer is executed **individually**, using its own Merkle proof.
+
+This design preserves:
+- replay protection
+- deterministic execution
+- partial batch execution safety
+
+## On-chain Execution Flow
+
+```text
+Aggregator / Backend
+    |
+    | submitBatch(merkleRoot, txCount)
+    v
+Settlement
+    |   (time-lock delay)
+    |
+    | executeTransfer(proof, data)
+    v
+Merkle verification → fee calculation → token transfer

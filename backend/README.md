@@ -151,6 +151,5 @@ Run example:
 ### Docs
 
 - `FUNCTIONALITY_TABLE.md`: high-level “done vs missing” feature tracking
-- `HELP.md`: Spring/Gradle reference links (generated template)
 
 
