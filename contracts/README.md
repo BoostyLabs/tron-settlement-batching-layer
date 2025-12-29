@@ -1,4 +1,4 @@
-## TSOL Architecture
+## TSBL-contracts
 
 ### **WhitelistRegistry.sol**
 
